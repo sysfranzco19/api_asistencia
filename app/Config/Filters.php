@@ -22,8 +22,8 @@ class Filters extends BaseConfig
         'csrf'          => CSRF::class,
         'toolbar'       => DebugToolbar::class,
         'honeypot'      => Honeypot::class,
-        'invalidchars'  => InvalidChars::class,
-        'secureheaders' => SecureHeaders::class,
+        'cors'          => \App\Filters\Cors::class, // <--- 1. AGREGA ESTO
+        // ...
     ];
 
     /**
@@ -33,17 +33,10 @@ class Filters extends BaseConfig
      * @var array<string, array<string, array<string, string>>>|array<string, list<string>>
      */
     public array $globals = [
-        'before' => [
-            // 'honeypot',
-            // 'csrf',
-            // 'invalidchars',
-        ],
-        'after' => [
-            'toolbar',
-            // 'honeypot',
-            // 'secureheaders',
-        ],
+        'before' => ['cors'],
+        'after'  => ['cors'],
     ];
+
 
     /**
      * List of filter aliases that works on a
